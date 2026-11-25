@@ -4,7 +4,7 @@
    (atau tempel isinya di dalam <script>…</script> baru)                       */
 (()=>{
 /* ---------- PENGATURAN ---------- */
-const API_URL="";          // URL Web App Google Apps Script (berakhiran /exec). Kosong = mode lokal saja
+const API_URL="https://script.google.com/macros/s/AKfycbzG39Jfs0ZCMZeG4x60zZ5F_CW8SIMihCw83kNRcJnYSof6Q1PJzFdaIrAVdsvIBglSSQ/exec";          // URL Web App Google Apps Script (berakhiran /exec). Kosong = mode lokal saja
 const OCR_ON=true;         // baca nominal dari screenshot bukti bayar
 const STRICT_BLOCK=true;   // true = pesanan DITOLAK bila nominal terbaca tapi tidak sama dengan total
 /* -------------------------------- */
