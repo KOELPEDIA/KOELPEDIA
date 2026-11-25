@@ -282,9 +282,9 @@ const LABEL={tersedia:"Tersedia",tidak:"Tidak tersedia",habis:"Stok habis",seger
 const STL={Menunggu:"Menunggu verifikasi",Lunas:"Lunas",Selesai:"Selesai",Batal:"Batal"};
 const PAYMENTS=[ // icon: emoji ATAU URL gambar (bisa juga diganti dari dashboard admin); qr: URL gambar QR (opsional)
  {id:"qris",n:"QRIS",icon:"🔳",info:"Scan kode QRIS di bawah, lalu bayar sesuai total.",qr:""},
- {id:"dana",n:"DANA",icon:"💙",info:"DANA 0812-0000-0000 a.n. GOSUPPLY",qr:""},
- {id:"ovo",n:"OVO",icon:"💜",info:"OVO 0812-0000-0000 a.n. GOSUPPLY",qr:""},
- {id:"seabank",n:"SeaBank",icon:"🧡",info:"SeaBank 9012-3456-7890 a.n. GOSUPPLY",qr:""}];
+ {id:"dana",n:"DANA",icon:"💙",info:"DANA 0812-0000-0000 a.n. KOELPEDIA",qr:""},
+ {id:"ovo",n:"OVO",icon:"💜",info:"OVO 0812-0000-0000 a.n. KOELPEDIA",qr:""},
+ {id:"seabank",n:"SeaBank",icon:"🧡",info:"SeaBank 9012-3456-7890 a.n. KOELPEDIA",qr:""}];
 const MUSIC_FILES=[ /* tambah lagu bebas hak cipta milikmu: {n:"Lagu santai 1",src:"music/lagu1.mp3"} */ ];
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 /* ======================================================== */
@@ -298,7 +298,7 @@ const waLink=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
 const hash=s=>{let a=0xdeadbeef,b=0x41c6ce57;for(let i=0,c;i<s.length;i++){c=s.charCodeAt(i);a=Math.imul(a^c,2654435761);b=Math.imul(b^c,1597334677)}a=Math.imul(a^a>>>16,2246822507)^Math.imul(b^b>>>13,3266489909);b=Math.imul(b^b>>>16,2246822507)^Math.imul(a^a>>>13,3266489909);return 4294967296*(2097151&b)+(a>>>0)};
 const accessCode=inv=>hash(inv+"|"+SALT).toString(36).toUpperCase().slice(0,6);
 const toast=m=>{const t=$("#toast");t.textContent=m;gsap.killTweensOf(t);gsap.fromTo(t,{opacity:0,y:20},{opacity:1,y:0,duration:.3,onComplete:()=>gsap.to(t,{opacity:0,delay:2})})};
-$("#waTop").href=waLink("Halo admin GOSUPPLY, saya ingin bertanya.");
+$("#waTop").href=waLink("Halo admin KOELPEDIA, saya ingin bertanya.");
 
 const st=store.get("gs_status",{}),media=store.get("gs_media",{});let orders=store.get("gs_orders",[]);const pay=store.get("gs_pay",{});PAYMENTS.forEach(m=>Object.assign(m,pay[m.id]||{}));const dsc=store.get("gs_disc",{});PRODUCTS.forEach(p=>{if(p.id in dsc)p.disc=dsc[p.id]});
 PRODUCTS.forEach(p=>{if(st[p.id])p.status=st[p.id];if(media[p.id]){if(media[p.id].img)p.img=media[p.id].img;if(media[p.id].bg)p.bg=media[p.id].bg}});
@@ -386,7 +386,7 @@ function openProduct(id){
    <span class="badge s-${p.status}">${LABEL[p.status]}</span><h3>${p.name}</h3><p>${p.desc}</p>
    <p><span class="price" style="font-size:1.1rem">${p.tool?"Mulai ":""}${priceHTML(p)}</span>${p.disc&&ok?` <span class="badge s-tersedia">Hemat ${p.disc}%</span>`:""}${p.type==="ebook"?" · Format PDF":p.type==="undangan"?" · Desain bisa request":""} · Bayar lunas di muka</p>
    <div class="row" style="margin-top:10px"><button class="btn ${p.tool?"":"wa"}" id="buy" ${ok?"":"disabled"}>${!ok?LABEL[p.status]:p.tool?"Pilih ukuran &amp; beli akses":"Beli sekarang"}</button>
-   <a class="btn o" style="color:var(--ink)" target="_blank" rel="noopener" href="${waLink("Halo admin GOSUPPLY, saya mau tanya tentang produk: "+p.name)}">Hubungi admin WA</a></div>`;
+   <a class="btn o" style="color:var(--ink)" target="_blank" rel="noopener" href="${waLink("Halo admin KOELPEDIA, saya mau tanya tentang produk: "+p.name)}">Hubungi admin WA</a></div>`;
   openOv(ovP,boxP);
   $("#buy").onclick=()=>{if(p.tool){closeOv(ovP,boxP);setTimeout(()=>lenis.scrollTo("#polaroid"),350)}else checkout({pid:p.id,product:p.name,type:p.type,price:dp(p.price,p.disc),pre:"GS",suf:""})};
 }
@@ -423,7 +423,7 @@ function newOrder(o,c){
   const rec={code,pid:o.pid,product:o.product,type:o.type,price:o.price,buyer:c.name,phone:c.phone,note:c.note,pay:c.pm.n,proof:c.proof,date:d.toISOString(),status:"Menunggu"};
   orders.unshift(rec);if(!store.set("gs_orders",orders)){rec.proof=null;store.set("gs_orders",orders)}
   toast("Invoice "+code+" dibuat");
-  open(waLink(`Halo admin GOSUPPLY, saya sudah membayar:\nInvoice: ${code}\nProduk: ${o.product}\nTotal dibayar: ${rp(o.price)}\nMetode: ${c.pm.n}\nNama: ${c.name}\nWA: ${c.phone}`+(c.note?`\nRequest: ${c.note}`:"")+"\n\nBukti pembayaran saya lampirkan di chat ini."),"_blank");
+  open(waLink(`Halo admin KOELPEDIA, saya sudah membayar:\nInvoice: ${code}\nProduk: ${o.product}\nTotal dibayar: ${rp(o.price)}\nMetode: ${c.pm.n}\nNama: ${c.name}\nWA: ${c.phone}`+(c.note?`\nRequest: ${c.note}`:"")+"\n\nBukti pembayaran saya lampirkan di chat ini."),"_blank");
 }
 
 /* ===== Riwayat & Admin ===== */
@@ -603,7 +603,7 @@ function showPop(){
    <button class="btn" id="pgo" style="width:100%;margin-top:14px">${esc(pop.btn)}</button>`;
   openOv(ovPop,boxPop);
   $("#pcode")?.addEventListener("click",()=>{try{navigator.clipboard.writeText(pop.code)}catch(e){}toast("Kode disalin")});
-  $("#pgo").onclick=()=>{closePop();setTimeout(()=>{if(pop.act==="wa")open(waLink("Halo admin GOSUPPLY, saya mau pakai promo"+(pop.code?" "+pop.code:"")+"."),"_blank");else lenis.scrollTo(pop.act==="studio"?"#polaroid":"#produk")},350)};
+  $("#pgo").onclick=()=>{closePop();setTimeout(()=>{if(pop.act==="wa")open(waLink("Halo admin KOELPEDIA, saya mau pakai promo"+(pop.code?" "+pop.code:"")+"."),"_blank");else lenis.scrollTo(pop.act==="studio"?"#polaroid":"#produk")},350)};
 }
 const popAdmin=()=>`<h3 style="font-size:1.6rem;margin-top:24px">Popup promo / diskon</h3><p>Muncul sekali setiap pengunjung baru membuka website. Ubah isinya untuk promo, diskon, atau info.</p>
  <div class="prow"><label class="mini"><input type="checkbox" data-po="on" ${pop.on?"checked":""} style="width:auto;display:inline;margin-right:4px">Aktif</label><button class="mini" data-pshow="1">Tes tampilkan</button>
