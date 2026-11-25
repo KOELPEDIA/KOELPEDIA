@@ -509,15 +509,17 @@ function chips(){
 }
 $("#sizes").onclick=e=>{const c=e.target.closest(".chip");if(!c||c.disabled)return;sz=SIZES.find(s=>s.k===c.dataset.k);chips();draw();gsap.fromTo(cv,{scale:.94},{scale:1,duration:.5,ease:"back.out(1.6)"})};
 $("#tpls").onclick=e=>{const c=e.target.closest(".chip");if(!c)return;tp=TPLS.find(t=>t.id===c.dataset.t);chips();draw();gsap.fromTo(cv,{rotate:-3,scale:.96},{rotate:0,scale:1,duration:.5,ease:"back.out(1.6)"})};
-function draw(){
+  const demo=new Image();demo.onload=()=>draw();demo.src="https://i.ibb.co.com/VYhhD2GZ/image.png";
+  function draw(){
   const K=8,[W,H]=[sz.mm[0]*K,sz.mm[1]*K],[x,y,w,h]=sz.ph.map(v=>v*K);cv.width=W;cv.height=H;
   cx.fillStyle=tp.bg;cx.fillRect(0,0,W,H);
   const g=cx.createLinearGradient(x,y,x+w,y+h);g.addColorStop(0,"#9fb8b0");g.addColorStop(1,"#d7c58f");cx.fillStyle=g;cx.fillRect(x,y,w,h);
-  if(img&&unlocked){cx.save();cx.beginPath();cx.rect(x,y,w,h);cx.clip();cx.filter=$("#pfil").value;
-    const s=Math.max(w/img.width,h/img.height),iw=img.width*s,ih=img.height*s;cx.drawImage(img,x+(w-iw)/2,y+(h-ih)/2,iw,ih);cx.restore();cx.filter="none"}
+  const im=(img&&unlocked)?img:(demo.naturalWidth?demo:null);
+  if(im){cx.save();cx.beginPath();cx.rect(x,y,w,h);cx.clip();cx.filter=unlocked?$("#pfil").value:"none";
+  const s=Math.max(w/im.width,h/im.height),iw=im.width*s,ih=im.height*s;cx.drawImage(im,x+(w-iw)/2,y+(h-ih)/2,iw,ih);cx.restore();cx.filter="none"}
   const zone=H-(y+h),fs=Math.min(zone*.5,W*.12);
   cx.textAlign="center";cx.fillStyle=tp.ink;cx.font=tp.f.replace("{s}",fs|0);
-  cx.fillText(unlocked?$("#pc").value:"Momen manis",W/2,y+h+zone/2+fs*.3,W-40);
+  cx.fillText(unlocked?$("#pc").value:"CONTOH FOTO & TEKS DAPAT DIGANTI",W/2,y+h+zone/2+fs*.3,W-40);
   if(tp.deco==="dots"){cx.fillStyle=tp.ink+"55";for(let i=0;i<5;i++){cx.beginPath();cx.arc(W*(.2+i*.15),H-zone*.14,3,0,7);cx.fill()}}
   if(tp.deco==="line"){cx.strokeStyle=tp.ink;cx.lineWidth=2;cx.strokeRect(x-8,y-8,w+16,h+16)}
 }
