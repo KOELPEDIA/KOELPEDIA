@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GOSUPPLY – Ebook Resep, Undangan Digital & Polaroid Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Manrope:wght@400;500;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0C0C0D;--em:#0C0C0D;--gold:#C9A96E;--ivory:#F6F1E7;--bg:#F6F1E7;--card:#FFFDF8;--line:#E4DCCB;--mut:#6B655A;--r:18px}
+*{box-sizing:border-box;margin:0;min-width:0}
+html.lenis{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
+html{-webkit-text-size-adjust:100%}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:clamp(15px,1.4vw + 11px,17px);overflow-x:hidden}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;line-height:1.02;letter-spacing:-.01em;font-weight:700}
+button,input,select{font:inherit;color:inherit}button{cursor:pointer}a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.1em}.w span{display:inline-block}
+/* nav */
+nav{position:fixed;inset:0 0 auto;z-index:30;padding:max(10px,env(safe-area-inset-top)) 0 10px;transition:background .3s,box-shadow .3s;color:#fff}
+nav.solid{background:rgba(12,12,13,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 #ffffff18}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.logo{font-family:'Cormorant Garamond';font-size:clamp(1.4rem,5vw,1.8rem);font-weight:700;letter-spacing:.14em;text-decoration:none}.logo i{color:var(--gold);font-style:normal}
+.nv{display:flex;gap:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--gold);background:var(--gold);color:var(--ink);padding:.7em 1.4em;border-radius:99px;font-weight:700;font-size:.92rem;text-decoration:none;transition:transform .25s,background .25s,color .25s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn.o{background:transparent;color:inherit;border-color:currentColor}
+.btn.wa{background:var(--ink);border-color:var(--ink);color:var(--ivory)}nav .btn.wa{background:var(--ivory);border-color:var(--ivory);color:var(--ink)}
+.btn[disabled]{opacity:.4;cursor:not-allowed;transform:none}
+.btn.sm{padding:.5em 1em;font-size:.82rem}
+@media(max-width:480px){.nv .btn{padding:.55em .9em;font-size:.8rem}.long{display:none}}
+/* banner */
+.banner{position:relative;height:clamp(540px,92svh,820px);background:var(--ink);color:#fff;overflow:hidden;touch-action:pan-y}
+.sl{position:absolute;inset:0;display:none}
+.sl.on{display:block}
+.sl .bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.sl .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#070707cc 0%,#07070766 55%,transparent)}
+.sl .in{position:relative;height:100%;display:flex;flex-direction:column;justify-content:center;padding-top:70px;padding-bottom:70px;max-width:min(640px,100%)}
+.tag{display:inline-block;width:max-content;border:1px solid #ffffff55;padding:.25em 1em;border-radius:99px;font-size:.8rem;margin-bottom:18px;backdrop-filter:blur(4px)}
+.sl h1{font-size:clamp(2.5rem,9vw,5.6rem);margin-bottom:18px}
+.sl p{max-width:44ch;opacity:.9;margin-bottom:28px}
+.art{position:absolute;right:clamp(-30px,4vw,80px);top:50%;transform:translateY(-50%);width:clamp(150px,34vw,420px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font-size:clamp(4rem,14vw,10rem);border:1px solid #ffffff40;background:#ffffff14;backdrop-filter:blur(6px)}
+.ctl{position:absolute;left:0;right:0;bottom:max(18px,env(safe-area-inset-bottom));z-index:5}
+.ctl .wrap{display:flex;align-items:center;gap:14px}
+.dots{display:flex;gap:8px;flex:1}
+.dot{flex:0 1 54px;height:4px;border-radius:4px;border:0;background:#ffffff40;overflow:hidden;padding:0}
+.dot i{display:block;height:100%;width:0;background:var(--gold)}
+.dot.on i{width:100%}
+.ar{width:42px;height:42px;border-radius:50%;border:1px solid #ffffff66;background:#0000;color:#fff;font-size:1.1rem}
+/* sections */
+section{padding:clamp(56px,10vw,110px) 0}
+h2{font-size:clamp(2.1rem,7vw,4rem);margin-bottom:12px}
+.sub{color:var(--mut);max-width:56ch;margin-bottom:30px}
+.dark{background:var(--ink);color:var(--ivory)}.dark .sub{color:#ffffffb0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:26px;scrollbar-width:none}
+.tab{flex:none;border:1px solid var(--line);background:#fff;padding:.6em 1.3em;border-radius:99px;font-weight:700;font-size:.9rem;transition:background .25s,color .25s}
+.tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:clamp(14px,2.4vw,24px);grid-auto-rows:1fr}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;text-align:left;padding:0;width:100%;height:100%;position:relative;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 22px 40px -20px #0c0c0d55}
+.thumb{aspect-ratio:4/3;width:100%;flex:none;display:grid;place-items:center;font-size:3.4rem;background-size:cover;background-position:center}
+.card .in{padding:14px 16px 18px;display:grid;grid-template-rows:auto 2.1em auto;align-content:start;gap:8px;flex:none}
+.card h3{font-size:1.35rem;line-height:1.05;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;height:2.1em}.price{font-weight:800;color:var(--em);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.price s{font-weight:500;color:var(--mut);margin-right:4px;font-size:.85em}
+.badge{display:inline-flex;align-items:center;gap:6px;width:max-content;font-size:.75rem;font-weight:700;padding:.25em .8em;border-radius:99px;background:#eef1ee}
+.badge::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.s-tersedia{color:#13823f;background:#e4f5ea}.s-tidak{color:#6b747a;background:#eceff1}.s-habis{color:#c43044;background:#fde7ea}.s-segera{color:#9a7414;background:#fbf1d3}
+/* studio */
+.lab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+@media(max-width:860px){.lab{grid-template-columns:1fr}}
+.how{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:22px 0}
+@media(max-width:560px){.how{grid-template-columns:1fr}}
+.how h3{font-size:1.4rem;margin-bottom:6px;color:var(--ivory)}
+.how ol{padding-left:1.2em;font-size:.92rem;color:#ffffffcc}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 16px}
+.chip{border:1px solid #ffffff40;background:transparent;color:#fff;padding:.45em 1em;border-radius:99px;font-size:.85rem;transition:all .25s}
+.chip.on{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:700}
+.chip[disabled]{opacity:.35;cursor:not-allowed}
+.fl{font-weight:700;font-size:.85rem;display:block;margin-top:6px}
+input,select,textarea{width:100%;padding:.8em 1em;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:16px}
+.dark input,.dark select{background:#ffffff10;border-color:#ffffff30;color:#fff}.dark option{color:#000}
+.box2{border:1px solid #ffffff25;border-radius:var(--r);padding:16px;margin:14px 0;background:#ffffff08}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.stage{display:grid;place-items:center;padding:clamp(14px,3vw,30px);border-radius:24px;background:radial-gradient(circle at 30% 20%,#2c2822,#09090a)}
+canvas{width:100%;max-width:440px;max-height:70svh;object-fit:contain;height:auto;border-radius:4px;box-shadow:0 30px 50px -20px #000}
+.lock{font-size:.85rem;color:var(--gold);margin-top:8px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:20px}
+.steps div{border-top:2px solid var(--gold);padding-top:14px}.steps h3{font-size:1.6rem}.steps p{color:var(--mut);font-size:.95rem}
+footer{background:var(--ink);color:#fff;padding:44px 0 max(34px,env(safe-area-inset-bottom));text-align:center}
+footer button{background:none;border:0;color:#ffffff80;text-decoration:underline;margin-top:10px;font-size:.85rem}
+/* modal */
+.ov{position:fixed;inset:0;background:#070707c4;backdrop-filter:blur(4px);z-index:60;display:none;place-items:center;padding:14px}
+.box{background:#fff;border-radius:24px;width:min(560px,100%);max-height:92dvh;overflow:auto;padding:clamp(18px,4vw,30px);position:relative}
+.box.big{width:min(880px,100%)}
+.box h3{font-size:2rem;margin:10px 0 6px}.box p{margin:8px 0;color:var(--mut)}
+.x{position:absolute;right:12px;top:12px;border:0;background:var(--bg);width:38px;height:38px;border-radius:50%;z-index:2}
+.mh{border-radius:16px;margin:-4px 0 14px}
+.ord{border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-top:10px;display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.ord code{background:#f3ead0;padding:2px 8px;border-radius:6px;font-weight:700;word-break:break-all}
+.ord select{width:auto;padding:.4em .7em}
+.mini{padding:.4em .9em;font-size:.8rem;border:1px solid var(--ink);border-radius:99px;background:#fff;font-weight:700;text-decoration:none}
+.prow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-top:10px}
+.prow .ed{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.prow input[type=color]{width:44px;padding:2px;height:36px}.prow input[type=file]{width:auto;font-size:.8rem;padding:.4em}
+.toast{position:fixed;top:calc(72px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:.8em 1.4em;border-radius:99px;z-index:99;opacity:0;pointer-events:none;max-width:92vw;text-align:center;font-size:.9rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.pays{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:14px}
+.pm{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.sum{display:flex;justify-content:space-between;gap:10px;background:var(--bg);border-radius:14px;padding:12px 14px;margin:8px 0}
+.pmg{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:8px 0}
+.pmc{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:10px 12px;text-align:left;transition:border-color .2s,box-shadow .2s}
+.pmc.on{border-color:var(--gold);box-shadow:0 0 0 3px #c9a96e44}
+.pmi{background:#fbf6e6;border-radius:14px;padding:12px 14px;margin:6px 0 4px;font-size:.92rem;word-break:break-word}
+.pf{width:44px;height:44px;border-radius:8px;object-fit:cover;cursor:pointer}
+.tk{position:fixed;left:0;bottom:calc(84px + env(safe-area-inset-bottom));z-index:40;display:none;align-items:center;gap:10px;white-space:nowrap;background:#fff;color:var(--ink);padding:.55em 1.1em .55em .55em;border-radius:99px;box-shadow:0 12px 30px -10px #0c0c0d66;font-size:.85rem;border:1px solid var(--line);pointer-events:none}
+.tk i{width:32px;height:32px;border-radius:50%;background:#e4f5ea;color:#13823f;display:grid;place-items:center;font-style:normal;font-weight:800}
+.mp{position:fixed;left:14px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:45;display:flex;align-items:center;gap:4px;background:var(--ink);color:#fff;border-radius:99px;padding:5px;box-shadow:0 12px 30px -8px #000a;max-width:calc(100vw - 28px)}
+.mb{width:40px;height:40px;border-radius:50%;border:0;background:#ffffff1a;color:#fff;display:grid;place-items:center;cursor:pointer;font-size:.95rem;flex:none}
+.mb:hover{background:var(--gold);color:var(--ink)}
+#mpn{font-size:.78rem;max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 6px}
+@media(max-width:520px){#mpn{display:none}}
+.off{position:absolute;top:10px;right:10px;z-index:2;background:var(--ink);color:var(--gold);font-weight:800;font-size:.78rem;padding:.25em .7em;border-radius:99px}
+.box.pop{width:min(340px,100%);max-height:80dvh;padding:clamp(20px,5vw,28px);text-align:center}
+.pop h3{font-size:clamp(1.7rem,7vw,2.1rem)}
+.tg{display:inline-block;background:var(--ink);color:var(--gold);font-size:.72rem;font-weight:800;letter-spacing:.06em;padding:.3em .9em;border-radius:99px}
+.pcode{display:block;width:100%;margin-top:12px;border:1.5px dashed var(--gold);background:transparent;border-radius:12px;padding:.6em;font-weight:800;letter-spacing:.06em}
+.pcode small{font-weight:500;opacity:.6}
+</style>
+</head>
+<body>
+
+<nav id="nav"><div class="wrap">
+  <a class="logo" href="#top">GO<i>·</i>SUPPLY</a>
+  <div class="nv">
+    <button class="btn o sm" id="openHist">Riwayat<span class="long">&nbsp;pesanan</span></button>
+    <a class="btn wa sm" id="waTop" target="_blank" rel="noopener">Hubungi<span class="long">&nbsp;admin</span> WA</a>
+  </div>
+</div></nav>
+
+<header class="banner" id="top" aria-roledescription="carousel">
+  <div id="slides"></div>
+  <div class="ctl"><div class="wrap">
+    <div class="dots" id="dots"></div>
+    <button class="ar" id="prev" aria-label="Slide sebelumnya">‹</button>
+    <button class="ar" id="next" aria-label="Slide berikutnya">›</button>
+  </div></div>
+</header>
+
+<section id="produk"><div class="wrap">
+  <h2 class="split">Pilih produk digitalmu</h2>
+  <p class="sub">Klik produk untuk melihat keterangan, status ketersediaan, dan memesan lewat WhatsApp.</p>
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-k="semua">Semua</button>
+    <button class="tab" data-k="ebook">Ebook resep</button>
+    <button class="tab" data-k="undangan">Undangan digital</button>
+    <button class="tab" data-k="polaroid">Polaroid</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section class="dark" id="polaroid"><div class="wrap">
+  <h2 class="split">Polaroid Studio</h2>
+  <p class="sub">Pilih ukuran dan template, bayar lewat WhatsApp, lalu buat polaroidmu langsung di sini. Hasilnya bisa disimpan dan dicetak.</p>
+  <div class="lab">
+    <div>
+      <div class="how">
+        <div><h3>Cara beli</h3><ol><li>Pilih ukuran dan template.</li><li>Klik Bayar &amp; beli akses.</li><li>Pilih QRIS, DANA, OVO, atau SeaBank, lunasi, unggah bukti.</li><li>Setelah diverifikasi, admin mengirim kode akses.</li></ol></div>
+        <div><h3>Cara pakai</h3><ol><li>Masukkan kode invoice dan kode akses.</li><li>Unggah foto dan tulis keterangan.</li><li>Pilih filter dan template.</li><li>Simpan PNG atau cetak.</li></ol></div>
+      </div>
+      <span class="fl">Ukuran</span><div class="chips" id="sizes"></div>
+      <span class="fl">Template</span><div class="chips" id="tpls"></div>
+      <div class="box2" id="buyBox">
+        <span class="fl" style="margin:0 0 6px" id="priceLine"></span>
+        <button class="btn" id="pbuy">Bayar &amp; beli akses</button>
+        <span class="fl" style="margin-top:14px">Sudah bayar? Buka kunci</span>
+        <div class="row"><input id="uinv" placeholder="Kode invoice (GP-…)" style="flex:2;min-width:150px"><input id="ucode" placeholder="Kode akses" style="flex:1;min-width:110px"><button class="btn o" id="unlock">Buka</button></div>
+      </div>
+      <div id="editor" style="display:none">
+        <span class="fl">Foto</span><input type="file" id="pf" accept="image/*">
+        <span class="fl">Keterangan</span><input id="pc" maxlength="28" value="Momen manis">
+        <span class="fl">Filter</span>
+        <select id="pfil"><option value="none">Asli</option><option value="grayscale(1)">Hitam putih</option><option value="sepia(.8)">Sepia</option><option value="saturate(1.6) contrast(1.1)">Cerah</option><option value="contrast(1.2) saturate(.7) brightness(1.05)">Vintage</option></select>
+        <div class="row" style="margin-top:14px"><button class="btn" id="psave">Simpan PNG</button><button class="btn o" id="pprint">Cetak</button></div>
+      </div>
+    </div>
+    <div class="stage"><canvas id="cv" aria-label="Pratinjau polaroid"></canvas></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2 class="split">Cara pesan</h2>
+  <div class="steps">
+    <div><h3>Pilih produk</h3><p>Klik produk untuk melihat keterangan dan status ketersediaannya.</p></div>
+    <div><h3>Bayar lunas</h3><p>Pilih QRIS, DANA, OVO, atau SeaBank, lalu unggah bukti pembayaran.</p></div>
+    <div><h3>Terima pesananmu</h3><p>Setelah admin memverifikasi, ebook bisa diunduh sebagai PDF dan undangan mulai dikerjakan.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap"><h2 class="split">Metode pembayaran</h2><p class="sub">Semua produk digital wajib dibayar lunas sebelum diproses.</p><div class="pays" id="pays"></div></div></section>
+<footer><div class="wrap">
+  <div class="logo">GO<i>·</i>SUPPLY</div>
+  <p style="opacity:.65;font-size:.9rem">Ebook resep, undangan digital, dan polaroid.</p>
+  <button id="openAdmin">Masuk admin</button>
+</div></footer>
+
+<div class="ov" id="ovP"><div class="box" id="boxP" role="dialog" aria-modal="true"></div></div>
+<div class="ov" id="ovH"><div class="box big" id="boxH" role="dialog" aria-modal="true"></div></div>
+<div class="ov" id="ovPop"><div class="box pop" id="boxPop" role="dialog" aria-modal="true"></div></div>
+<div id="tk" class="tk" aria-live="polite"></div>
+<div class="mp" id="mp"><button class="mb" id="mpv" aria-label="Lagu sebelumnya">⏮</button><button class="mb" id="mpp" aria-label="Putar atau jeda musik">▶</button><button class="mb" id="mpx" aria-label="Lagu berikutnya">⏭</button><span id="mpn"></span><button class="mb" id="mpm" aria-label="Bisukan musik">🔊</button><label class="mb" title="Tambah lagu dari perangkat" aria-label="Tambah lagu">＋<input type="file" id="mpf" accept="audio/*" hidden></label></div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+/* ============ PENGATURAN – ubah sesuai tokomu ============ */
+const WA="6281234567890";            // nomor WhatsApp admin (format 62…)
+const PIN="gosupply123";             // PIN masuk dashboard admin (ganti!)
+const SALT="ganti-rahasia-ini";      // rahasia pembuat kode akses polaroid (ganti!)
+const SLIDES=[                       // banner: tambah/ubah slide; isi img dengan URL foto jika ada
+ {tag:"Ebook resep PDF",t:"Resep rumahan siap diunduh",p:"Koleksi resep masakan lengkap dengan takaran dan langkah mudah.",emo:"📖",g:"linear-gradient(120deg,#0b0b0c,#2a251c)",img:"",cta:"Lihat ebook",act:"filter:ebook"},
+ {tag:"Undangan digital",t:"Undangan sesuai keinginanmu",p:"Tema, warna, dan isi bisa kamu request langsung ke admin.",emo:"💌",g:"linear-gradient(120deg,#0b0b0c,#1e1e20)",img:"",cta:"Request lewat WA",act:"wa:Halo admin GOSUPPLY, saya mau request undangan digital."},
+ {tag:"Polaroid Studio",t:"Cetak polaroid dari fotomu",p:"Pilih ukuran dan template, buat langsung di website, lalu simpan atau cetak.",emo:"📷",g:"linear-gradient(120deg,#101010,#2b2118)",img:"",cta:"Buka studio",act:"go:#polaroid"},
+ {tag:"Pesan mudah",t:"Pantau pesanan dengan kode invoice",p:"Setiap pembelian mendapat invoice dan tersimpan di riwayat pesananmu.",emo:"🧾",g:"linear-gradient(120deg,#0b0b0c,#232019)",img:"",cta:"Riwayat pesanan",act:"hist"},
+ {tag:"Segera hadir",t:"Produk baru sedang disiapkan",p:"Menu Sehat Anak dan Paket Cetak Polaroid HD akan segera tersedia.",emo:"✨",g:"linear-gradient(120deg,#0b0b0c,#2d2a22)",img:"",cta:"Lihat semua produk",act:"filter:semua"}
+];
+const PRODUCTS=[ // disc = persen potongan harga (isi 0 atau hapus untuk tanpa diskon; bisa juga diubah dari dashboard); img = URL gambar (opsional)
+ {id:"e1",type:"ebook",name:"Resep Nusantara 100",price:25000,disc:20,status:"tersedia",emo:"📖",bg:"#ECE3D0",img:"",pdf:"ebook/resep-nusantara-100.pdf",desc:"100 resep masakan rumahan Nusantara lengkap dengan takaran dan langkah mudah. Dikirim dalam format PDF."},
+ {id:"e2",type:"ebook",name:"Kue Kering Lebaran",price:19000,disc:0,status:"habis",emo:"🍪",bg:"#ECE3D0",img:"",pdf:"ebook/kue-kering.pdf",desc:"25 resep kue kering favorit keluarga. Stok sedang habis, hubungi admin untuk info restock."},
+ {id:"e3",type:"ebook",name:"Menu Sehat Anak",price:22000,disc:0,status:"segera",emo:"🥗",bg:"#ECE3D0",img:"",pdf:"",desc:"Ide bekal dan menu sehat untuk anak. Segera hadir."},
+ {id:"u1",type:"undangan",name:"Undangan Pernikahan Digital",price:75000,disc:15,status:"tersedia",emo:"💍",bg:"#DDD3BF",img:"",desc:"Undangan web interaktif: nama mempelai, lokasi, galeri, dan RSVP. Desain bisa diminta sesuai keinginanmu lewat WhatsApp."},
+ {id:"u2",type:"undangan",name:"Undangan Ulang Tahun",price:45000,disc:10,status:"tersedia",emo:"🎂",bg:"#DDD3BF",img:"",desc:"Undangan ulang tahun anak atau dewasa dengan tema sesuai permintaan."},
+ {id:"u3",type:"undangan",name:"Undangan Aqiqah / Khitanan",price:40000,disc:0,status:"tidak",emo:"🌙",bg:"#DDD3BF",img:"",desc:"Slot pengerjaan sedang penuh. Hubungi admin untuk jadwal berikutnya."},
+ {id:"p1",type:"polaroid",name:"Polaroid Studio",price:10000,disc:0,status:"tersedia",emo:"📷",bg:"#1D1D1F",img:"",tool:1,desc:"Pilih ukuran (Mini, Square, Classic, Wide) dan template. Setelah pembayaran dikonfirmasi, kamu mendapat kode akses untuk membuat, menyimpan, dan mencetak polaroid."},
+ {id:"p2",type:"polaroid",name:"Paket Cetak Polaroid HD",price:30000,disc:0,status:"segera",emo:"🖨️",bg:"#1D1D1F",img:"",desc:"Cetak fisik polaroid dikirim ke rumahmu. Segera hadir."}
+];
+const SIZES=[ // mm = ukuran kertas, ph = [x,y,lebar,tinggi] area foto (mm)
+ {k:"S",n:"Mini 5,4×8,6 cm",mm:[54,86],ph:[4,4,46,62],price:10000},
+ {k:"M",n:"Square 7,2×8,6 cm",mm:[72,86],ph:[5,5,62,62],price:12000},
+ {k:"L",n:"Classic 8,8×10,7 cm",mm:[88,107],ph:[4.5,4.5,79,79],price:15000},
+ {k:"W",n:"Wide 10,8×8,6 cm",mm:[108,86],ph:[4.5,4.5,99,62],price:15000}];
+const TPLS=[
+ {id:"klasik",n:"Klasik putih",bg:"#ffffff",ink:"#222",f:"600 {s}px Caveat"},
+ {id:"vintage",n:"Krem vintage",bg:"#f1e4c6",ink:"#4a3a22",f:"italic 700 {s}px 'Cormorant Garamond'"},
+ {id:"rose",n:"Pastel rose",bg:"#ffd9df",ink:"#7a2b3a",f:"600 {s}px Caveat",deco:"dots"},
+ {id:"mint",n:"Mint segar",bg:"#d5f0e7",ink:"#165b49",f:"600 {s}px Caveat",deco:"dots"},
+ {id:"midnight",n:"Midnight gold",bg:"#12181c",ink:"#e0bf6a",f:"italic 700 {s}px 'Cormorant Garamond'",deco:"line"}];
+const LABEL={tersedia:"Tersedia",tidak:"Tidak tersedia",habis:"Stok habis",segera:"Segera hadir"};
+const STL={Menunggu:"Menunggu verifikasi",Lunas:"Lunas",Selesai:"Selesai",Batal:"Batal"};
+const PAYMENTS=[ // icon: emoji ATAU URL gambar (bisa juga diganti dari dashboard admin); qr: URL gambar QR (opsional)
+ {id:"qris",n:"QRIS",icon:"🔳",info:"Scan kode QRIS di bawah, lalu bayar sesuai total.",qr:""},
+ {id:"dana",n:"DANA",icon:"💙",info:"DANA 0812-0000-0000 a.n. GOSUPPLY",qr:""},
+ {id:"ovo",n:"OVO",icon:"💜",info:"OVO 0812-0000-0000 a.n. GOSUPPLY",qr:""},
+ {id:"seabank",n:"SeaBank",icon:"🧡",info:"SeaBank 9012-3456-7890 a.n. GOSUPPLY",qr:""}];
+const MUSIC_FILES=[ /* tambah lagu bebas hak cipta milikmu: {n:"Lagu santai 1",src:"music/lagu1.mp3"} */ ];
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+/* ======================================================== */
+
+const $=(s,e=document)=>e.querySelector(s),$$=(s,e=document)=>[...e.querySelectorAll(s)];
+const rp=n=>n?"Rp"+n.toLocaleString("id-ID"):"Gratis";
+const dp=(n,d)=>d?Math.round(n*(100-d)/100/100)*100:n;
+const priceHTML=(p,n=p.price)=>p.disc?`<s>${rp(n)}</s>${rp(dp(n,p.disc))}`:rp(n);
+const store={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return 1}catch(e){return 0}}};
+const waLink=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const hash=s=>{let a=0xdeadbeef,b=0x41c6ce57;for(let i=0,c;i<s.length;i++){c=s.charCodeAt(i);a=Math.imul(a^c,2654435761);b=Math.imul(b^c,1597334677)}a=Math.imul(a^a>>>16,2246822507)^Math.imul(b^b>>>13,3266489909);b=Math.imul(b^b>>>16,2246822507)^Math.imul(a^a>>>13,3266489909);return 4294967296*(2097151&b)+(a>>>0)};
+const accessCode=inv=>hash(inv+"|"+SALT).toString(36).toUpperCase().slice(0,6);
+const toast=m=>{const t=$("#toast");t.textContent=m;gsap.killTweensOf(t);gsap.fromTo(t,{opacity:0,y:20},{opacity:1,y:0,duration:.3,onComplete:()=>gsap.to(t,{opacity:0,delay:2})})};
+$("#waTop").href=waLink("Halo admin GOSUPPLY, saya ingin bertanya.");
+
+const st=store.get("gs_status",{}),media=store.get("gs_media",{});let orders=store.get("gs_orders",[]);const pay=store.get("gs_pay",{});PAYMENTS.forEach(m=>Object.assign(m,pay[m.id]||{}));const dsc=store.get("gs_disc",{});PRODUCTS.forEach(p=>{if(p.id in dsc)p.disc=dsc[p.id]});
+PRODUCTS.forEach(p=>{if(st[p.id])p.status=st[p.id];if(media[p.id]){if(media[p.id].img)p.img=media[p.id].img;if(media[p.id].bg)p.bg=media[p.id].bg}});
+const thumbStyle=p=>`background:${p.img?`url('${p.img}') center/cover`:p.bg}`;
+
+/* ===== Lenis + GSAP ===== */
+gsap.registerPlugin(ScrollTrigger);
+const lenis=new Lenis({lerp:.09});
+lenis.on("scroll",ScrollTrigger.update);
+gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
+const nav=$("#nav");addEventListener("scroll",()=>nav.classList.toggle("solid",scrollY>40),{passive:true});
+$$('a[href^="#"]').forEach(a=>a.addEventListener("click",e=>{e.preventDefault();lenis.scrollTo(a.getAttribute("href"))}));
+const splitWords=h=>{h.innerHTML=h.textContent.trim().split(/\s+/).map(w=>`<span class="w"><span>${w}</span></span>`).join(" ")};
+$$("h2.split").forEach(h=>{splitWords(h);gsap.from($$(".w span",h),{yPercent:115,rotate:4,duration:.9,ease:"power4.out",stagger:.1,scrollTrigger:{trigger:h,start:"top 88%"}})});
+gsap.from(".steps div",{y:30,opacity:0,stagger:.15,scrollTrigger:{trigger:".steps",start:"top 88%"}});
+
+/* ===== Banner slider ===== */
+const slW=$("#slides"),dotsW=$("#dots");let cur=-1,timer=null,busy=false;
+slW.innerHTML=SLIDES.map(s=>`<div class="sl"><div class="bg" style="background-image:${s.img?`url('${s.img}'),`:""}${s.g}"></div>
+ <div class="wrap" style="height:100%"><div class="in"><span class="tag">${s.tag}</span><h1 class="split">${s.t}</h1><p>${s.p}</p>
+ <div><button class="btn" data-act="${s.act}">${s.cta}</button></div></div><div class="art" aria-hidden="true">${s.emo}</div></div></div>`).join("");
+dotsW.innerHTML=SLIDES.map((_,i)=>`<button class="dot" aria-label="Slide ${i+1}"><i></i></button>`).join("");
+$$("#slides h1").forEach(splitWords);
+const sls=$$(".sl"),dts=$$(".dot");
+function go(n,d=1){
+  n=(n+sls.length)%sls.length;if(n===cur||busy){if(cur>=0&&!gsap.isTweening($('i',dts[cur])))auto();return}busy=true;
+  const prev=sls[cur],nx=sls[n];
+  nx.classList.add("on");nx.style.zIndex=2;
+  const tl=gsap.timeline({onComplete:()=>{if(prev)prev.classList.remove("on");nx.style.zIndex=1;busy=false}});
+  tl.fromTo(nx,{clipPath:d>0?"inset(0 0 0 100%)":"inset(0 100% 0 0)"},{clipPath:"inset(0 0 0 0)",duration:.9,ease:"power3.inOut"},0)
+    .fromTo($(".bg",nx),{scale:1.2},{scale:1,duration:1.6,ease:"power2.out"},0)
+    .from($(".tag",nx),{y:20,opacity:0,duration:.5},.5)
+    .from($$(".w span",nx),{yPercent:115,duration:.8,ease:"power4.out",stagger:.08},.55)
+    .from($$(".in p,.in .btn",nx),{y:24,opacity:0,duration:.6,stagger:.1},.9)
+    .from($(".art",nx),{scale:.6,opacity:0,rotate:-12,duration:.9,ease:"back.out(1.5)"},.6);
+  dts.forEach((x,i)=>{x.classList.toggle("on",false);gsap.killTweensOf($("i",x));gsap.set($("i",x),{width:i<n?"100%":"0%"})});
+  cur=n;auto();
+}
+function auto(){clearTimeout(timer);const bar=$("i",dts[cur]);gsap.to(bar,{width:"100%",duration:6,ease:"none",onComplete:()=>go(cur+1)})}
+const stop=()=>{gsap.killTweensOf($("i",dts[cur]))};
+$("#next").onclick=()=>{stop();go(cur+1)};$("#prev").onclick=()=>{stop();go(cur-1,-1)};
+dts.forEach((d,i)=>d.onclick=()=>{stop();go(i,i>cur?1:-1)});
+let sx=0;const bn=$(".banner");
+bn.addEventListener("pointerdown",e=>sx=e.clientX);
+bn.addEventListener("pointerup",e=>{const dx=e.clientX-sx;if(Math.abs(dx)>60&&!e.target.closest("button")){stop();go(cur+(dx<0?1:-1),dx<0?1:-1)}});
+bn.addEventListener("click",e=>{const a=e.target.closest("[data-act]");if(a)act(a.dataset.act)});
+go(0);
+function act(a){
+  const [k,...r]=a.split(":"),v=r.join(":");
+  if(k==="filter"){$(`.tab[data-k="${v}"]`).click();lenis.scrollTo("#produk",{offset:-10})}
+  else if(k==="go")lenis.scrollTo(v);
+  else if(k==="wa")open(waLink(v),"_blank");
+  else if(k==="hist")$("#openHist").click();
+}
+
+/* ===== Katalog ===== */
+const grid=$("#grid");
+function render(k="semua",anim=true){
+  grid.innerHTML=PRODUCTS.filter(p=>k==="semua"||p.type===k).map(p=>`<button class="card" data-id="${p.id}">${p.disc&&p.status==="tersedia"?`<span class="off">−${p.disc}%</span>`:""}
+   <div class="thumb" style="${thumbStyle(p)}">${p.img?"":p.emo}</div>
+   <div class="in"><span class="badge s-${p.status}">${LABEL[p.status]}</span><h3>${p.name}</h3><span class="price">${p.tool?"Mulai ":""}${priceHTML(p)}</span></div></button>`).join("");
+  if(anim)gsap.from(".card",{y:40,opacity:0,duration:.5,stagger:.07,ease:"power3.out",clearProps:"all"});
+}
+render("semua",false);
+gsap.from(".card",{y:50,opacity:0,stagger:.08,clearProps:"all",scrollTrigger:{trigger:"#grid",start:"top 88%"}});
+$("#tabs").addEventListener("click",e=>{
+  const b=e.target.closest(".tab");if(!b)return;
+  $$(".tab").forEach(t=>t.classList.toggle("on",t===b));
+  gsap.fromTo(b,{scale:.9},{scale:1,duration:.6,ease:"elastic.out(1,.5)"});
+  gsap.to(".card",{y:-18,opacity:0,scale:.96,duration:.2,stagger:.03,onComplete:()=>render(b.dataset.k)});
+});
+grid.addEventListener("click",e=>{const c=e.target.closest(".card");if(c)openProduct(c.dataset.id)});
+
+/* ===== Modal ===== */
+const ovP=$("#ovP"),boxP=$("#boxP"),ovH=$("#ovH"),boxH=$("#boxH");
+const openOv=(o,b)=>{o.style.display="grid";lenis.stop();gsap.fromTo(o,{opacity:0},{opacity:1,duration:.2});gsap.fromTo(b,{y:60,scale:.94,opacity:0},{y:0,scale:1,opacity:1,duration:.5,ease:"power3.out"})};
+const closeOv=(o,b)=>{if(o.style.display!=="grid")return;gsap.to(b,{y:30,opacity:0,duration:.2});gsap.to(o,{opacity:0,duration:.2,onComplete:()=>{o.style.display="none";lenis.start()}})};
+[[ovP,boxP],[ovH,boxH]].forEach(([o,b])=>o.addEventListener("click",e=>{if(e.target===o||e.target.closest(".x"))closeOv(o,b)}));
+addEventListener("keydown",e=>{if(e.key==="Escape"){closeOv(ovP,boxP);closeOv(ovH,boxH)}});
+const xbtn='<button class="x" aria-label="Tutup">✕</button>';
+
+function openProduct(id){
+  const p=PRODUCTS.find(x=>x.id===id),ok=p.status==="tersedia";
+  boxP.innerHTML=`${xbtn}<div class="thumb mh" style="${thumbStyle(p)}">${p.img?"":p.emo}</div>
+   <span class="badge s-${p.status}">${LABEL[p.status]}</span><h3>${p.name}</h3><p>${p.desc}</p>
+   <p><span class="price" style="font-size:1.1rem">${p.tool?"Mulai ":""}${priceHTML(p)}</span>${p.disc&&ok?` <span class="badge s-tersedia">Hemat ${p.disc}%</span>`:""}${p.type==="ebook"?" · Format PDF":p.type==="undangan"?" · Desain bisa request":""} · Bayar lunas di muka</p>
+   <div class="row" style="margin-top:10px"><button class="btn ${p.tool?"":"wa"}" id="buy" ${ok?"":"disabled"}>${!ok?LABEL[p.status]:p.tool?"Pilih ukuran &amp; beli akses":"Beli sekarang"}</button>
+   <a class="btn o" style="color:var(--ink)" target="_blank" rel="noopener" href="${waLink("Halo admin GOSUPPLY, saya mau tanya tentang produk: "+p.name)}">Hubungi admin WA</a></div>`;
+  openOv(ovP,boxP);
+  $("#buy").onclick=()=>{if(p.tool){closeOv(ovP,boxP);setTimeout(()=>lenis.scrollTo("#polaroid"),350)}else checkout({pid:p.id,product:p.name,type:p.type,price:dp(p.price,p.disc),pre:"GS",suf:""})};
+}
+/* Checkout: semua produk wajib dibayar lunas. Form tidak bisa dikirim jika ada yang kosong. */
+function checkout(o){
+  let pm=null,proof=null;const isU=o.type==="undangan";
+  boxP.innerHTML=`${xbtn}<h3>Pembayaran</h3>
+   <div class="sum"><span>${esc(o.product)}</span><b>${rp(o.price)}</b></div>
+   <p>Bayar lunas sesuai total. Pesanan diproses setelah admin memverifikasi bukti pembayaran.</p>
+   <label class="fl" for="cn">Nama</label><input id="cn" autocomplete="name">
+   <label class="fl" for="cw">Nomor WhatsApp</label><input id="cw" inputmode="tel" placeholder="08xxxxxxxxxx" autocomplete="tel">
+   ${isU?`<label class="fl" for="cr">Request desain / tema</label><input id="cr" placeholder="Contoh: pernikahan, tema hijau sage">`:""}
+   <span class="fl">Metode pembayaran</span>
+   <div class="pmg" id="pmg">${PAYMENTS.map(m=>`<button type="button" class="pmc" data-m="${m.id}">${icoHTML(m)}<b>${m.n}</b></button>`).join("")}</div>
+   <div id="pmi" class="pmi" style="display:none"></div>
+   <label class="fl" for="cp">Bukti pembayaran (screenshot)</label><input id="cp" type="file" accept="image/*">
+   <button class="btn wa" id="cgo" style="width:100%;margin-top:16px" disabled>Kirim pesanan via WA</button>
+   <p id="chint" style="font-size:.85rem"></p>`;
+  const val=()=>{const ok=$("#cn").value.trim().length>1&&$("#cw").value.replace(/\D/g,"").length>=9&&(!isU||$("#cr").value.trim())&&pm&&proof;
+    $("#cgo").disabled=!ok;$("#chint").textContent=ok?"":"Lengkapi nama, nomor WA, metode, dan bukti pembayaran.";return ok};
+  boxP.oninput=val;val();
+  $("#pmg").onclick=e=>{const b=e.target.closest(".pmc");if(!b)return;
+    pm=PAYMENTS.find(m=>m.id===b.dataset.m);$$(".pmc",boxP).forEach(c=>c.classList.toggle("on",c===b));
+    const i=$("#pmi");i.style.display="block";
+    i.innerHTML=`<b>${pm.n}</b><br>${esc(pm.info)}${pm.qr?`<br><img src="${pm.qr}" alt="QR ${pm.n}" style="width:min(220px,100%);margin-top:8px;border-radius:10px">`:""}<br><b style="color:var(--ink)">Total: ${rp(o.price)}</b>`;
+    gsap.from(i,{y:10,opacity:0,duration:.3});val()};
+  $("#cp").onchange=e=>{const f=e.target.files[0];if(!f){proof=null;val();return}resize(f,u=>{proof=u;val()},640,.6)};
+  $("#cgo").onclick=()=>{if(!val())return;
+    newOrder(o,{name:$("#cn").value.trim(),phone:$("#cw").value.trim(),note:isU?$("#cr").value.trim():"",pm,proof});closeOv(ovP,boxP)};
+  openOv(ovP,boxP);
+}
+function newOrder(o,c){
+  const d=new Date(),code=`${o.pre}-${String(d.getFullYear()).slice(2)}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}-${Math.random().toString(36).slice(2,6).toUpperCase()}${o.suf}`;
+  const rec={code,pid:o.pid,product:o.product,type:o.type,price:o.price,buyer:c.name,phone:c.phone,note:c.note,pay:c.pm.n,proof:c.proof,date:d.toISOString(),status:"Menunggu"};
+  orders.unshift(rec);if(!store.set("gs_orders",orders)){rec.proof=null;store.set("gs_orders",orders)}
+  toast("Invoice "+code+" dibuat");
+  open(waLink(`Halo admin GOSUPPLY, saya sudah membayar:\nInvoice: ${code}\nProduk: ${o.product}\nTotal dibayar: ${rp(o.price)}\nMetode: ${c.pm.n}\nNama: ${c.name}\nWA: ${c.phone}`+(c.note?`\nRequest: ${c.note}`:"")+"\n\nBukti pembayaran saya lampirkan di chat ini."),"_blank");
+}
+
+/* ===== Riwayat & Admin ===== */
+const fmt=d=>new Date(d).toLocaleString("id-ID",{dateStyle:"medium",timeStyle:"short"});
+function orderRow(o,admin){
+  const p=PRODUCTS.find(x=>x.id===o.pid)||{},paid=["Lunas","Selesai"].includes(o.status);
+  const dl=!admin&&o.type==="ebook"&&paid&&p.pdf?`<a class="mini" href="${p.pdf}" download>Download PDF</a>`:"";
+  const ac=admin&&o.code.startsWith("GP-")?`<br><small>Kode akses: <b>${accessCode(o.code)}</b></small>`:"";
+  const pf=admin&&o.proof?`<img class="pf" src="${o.proof}" alt="Bukti bayar" data-proof="${o.code}">`:"";
+  const info=admin?`<br><small>${esc(o.pay||"-")} · WA ${esc(o.phone||"-")}${o.note?" · "+esc(o.note):""}</small>`:"";
+  const ctl=admin?`${pf}<select data-c="${o.code}">${Object.keys(STL).map(s=>`<option value="${s}" ${s===o.status?"selected":""}>${STL[s]}</option>`).join("")}</select><button class="mini" data-del="${o.code}">Hapus</button>`
+   :`<span class="badge ${o.status==="Batal"?"s-habis":o.status==="Menunggu"?"s-segera":"s-tersedia"}">${STL[o.status]}</span>${dl}`;
+  return `<div class="ord"><div><code>${o.code}</code><br><b>${esc(o.product)}</b> · ${rp(o.price)}<br><small>${esc(o.buyer)} · ${fmt(o.date)}</small>${info}${ac}</div><div class="row">${ctl}</div></div>`;
+}
+const wire=(draw)=>{$("#q").oninput=draw;draw()};
+$("#openHist").onclick=()=>{
+  boxH.onclick=boxH.onchange=null;
+  boxH.innerHTML=`${xbtn}<h3>Riwayat pembelian</h3><p>Pesanan tersimpan di perangkat ini. Cari dengan kode invoice.</p><input id="q" placeholder="Cari kode invoice"><div id="list"></div>`;
+  wire(()=>{const q=$("#q").value.trim().toUpperCase(),l=orders.filter(o=>!q||o.code.includes(q));
+    $("#list").innerHTML=l.length?l.map(o=>orderRow(o,0)).join(""):"<p>Belum ada pesanan yang cocok. Pilih produk lalu klik Beli.</p>";
+    if(l.length)gsap.from(".ord",{y:18,opacity:0,stagger:.05,duration:.3})});
+  openOv(ovH,boxH);
+};
+let fails=0,lockUntil=0;
+$("#openAdmin").onclick=()=>{
+  boxH.onclick=boxH.onchange=null;
+  boxH.innerHTML=`${xbtn}<h3>Masuk admin</h3><p>Masukkan PIN untuk membuka dashboard.</p>
+   <input id="pin" type="password" autocomplete="off" placeholder="PIN admin" style="margin:10px 0"><button class="btn" id="pinGo" style="width:100%">Masuk</button><p id="pinErr" style="color:#c43044;min-height:1.4em"></p>`;
+  openOv(ovH,boxH);setTimeout(()=>$("#pin").focus(),300);
+  const go=()=>{
+    if(Date.now()<lockUntil){$("#pinErr").textContent="Terlalu banyak percobaan. Coba lagi sebentar.";return}
+    if($("#pin").value===PIN){fails=0;admin()}
+    else{fails++;if(fails>=3){lockUntil=Date.now()+15000;fails=0}$("#pinErr").textContent="PIN salah.";gsap.fromTo(boxH,{x:-12},{x:0,duration:.5,ease:"elastic.out(1,.3)"});$("#pin").value=""}
+  };
+  $("#pinGo").onclick=go;$("#pin").onkeydown=e=>{if(e.key==="Enter")go()};
+};
+function resize(file,cb,mx=720,q=.78){const i=new Image();i.onload=()=>{const k=Math.min(1,mx/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=i.width*k;c.height=i.height*k;const x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.drawImage(i,0,0,c.width,c.height);cb(c.toDataURL("image/jpeg",q))};i.src=URL.createObjectURL(file)}
+function admin(){
+  boxH.innerHTML=`${xbtn}<h3>Dashboard admin</h3>
+  <p>Cek pesanan dengan kode invoice, ubah status, dan atur tampilan produk.</p>
+  <input id="q" placeholder="Cek kode invoice…"><div id="list"></div>
+  <h3 style="font-size:1.6rem;margin-top:24px">Kode akses polaroid</h3>
+  <p>Setelah pembeli membayar, buat kode akses dari kode invoice-nya.</p>
+  <div class="row"><input id="ai" placeholder="Kode invoice GP-…" style="flex:1;min-width:150px"><button class="btn sm" id="ag">Buat kode</button></div><p id="ao"></p>
+  <h3 style="font-size:1.6rem;margin-top:24px">Produk: status, gambar, background</h3>
+  ${PRODUCTS.map(p=>`<div class="prow"><b>${p.name}</b>
+   <select data-p="${p.id}" style="width:auto">${Object.entries(LABEL).map(([k,v])=>`<option value="${k}" ${k===p.status?"selected":""}>${v}</option>`).join("")}</select>
+   <div class="ed"><input type="file" accept="image/*" data-img="${p.id}"><input type="color" data-bg="${p.id}" value="${/^#/.test(p.bg)?p.bg:"#dddddd"}" title="Warna background"><label class="mini">Diskon %<input type="number" min="0" max="90" value="${p.disc||0}" data-dc="${p.id}" style="width:58px;display:inline;padding:.2em .4em;margin-left:4px"></label><button class="mini" data-rst="${p.id}">Reset</button></div></div>`).join("")}`;
+  wire(()=>{const q=$("#q").value.trim().toUpperCase(),l=orders.filter(o=>!q||o.code.includes(q));
+    $("#list").innerHTML=l.length?l.map(o=>orderRow(o,1)).join(""):"<p>Tidak ada pesanan dengan kode itu.</p>"});
+  boxH.insertAdjacentHTML("beforeend",payAdmin()+popAdmin());
+  const saveM=()=>{if(!store.set("gs_media",media))toast("Penyimpanan penuh, pakai gambar lebih kecil");render($(".tab.on").dataset.k,0)};
+  boxH.onchange=e=>{const t=e.target,d=t.dataset;
+    if(d.c){orders.find(o=>o.code===d.c).status=t.value;store.set("gs_orders",orders);toast("Status pesanan diperbarui")}
+    if(d.pi&&t.files[0])resize(t.files[0],u=>setPay(d.pi,"icon",u),160,.9);
+    if(d.pq&&t.files[0])resize(t.files[0],u=>setPay(d.pq,"qr",u),720,.85);
+    if(d.pt)setPay(d.pt,"info",t.value);
+    if(d.dc){const p=PRODUCTS.find(x=>x.id===d.dc);p.disc=Math.max(0,Math.min(90,+t.value||0));dsc[d.dc]=p.disc;store.set("gs_disc",dsc);render($(".tab.on").dataset.k,0);chips();toast("Diskon diperbarui")}
+    if(d.po){pop[d.po]=t.type==="checkbox"?t.checked:t.value;store.set("gs_popup",pop);toast("Popup diperbarui")}
+    if(d.p){const p=PRODUCTS.find(x=>x.id===d.p);p.status=t.value;st[d.p]=t.value;store.set("gs_status",st);render($(".tab.on").dataset.k,0);toast("Status produk diperbarui")}
+    if(d.bg){const p=PRODUCTS.find(x=>x.id===d.bg);p.bg=t.value;(media[d.bg]=media[d.bg]||{}).bg=t.value;saveM()}
+    if(d.img&&t.files[0])resize(t.files[0],u=>{const p=PRODUCTS.find(x=>x.id===d.img);p.img=u;(media[d.img]=media[d.img]||{}).img=u;saveM();toast("Gambar produk diganti")});
+  };
+  boxH.onclick=e=>{const t=e.target,d=t.dataset;
+    if(d.del&&confirm("Hapus pesanan "+d.del+"?")){orders=orders.filter(o=>o.code!==d.del);store.set("gs_orders",orders);$("#q").oninput()}
+    if(d.pshow){closeOv(ovH,boxH);setTimeout(showPop,350)}
+    if(d.proof){const r=orders.find(x=>x.code===d.proof),w=open("");w.document.write(`<title>Bukti ${r.code}</title><img src="${r.proof}" style="max-width:100%">`)}
+    if(d.prst){delete pay[d.prst];store.set("gs_pay",pay);location.reload()}
+    if(d.rst){delete media[d.rst];store.set("gs_media",media);location.reload()}
+    if(t.id==="ag"){const v=$("#ai").value.trim().toUpperCase();$("#ao").innerHTML=/^GP-\d{6}-[A-Z0-9]{4}-[SMLW]$/.test(v)?`Kode akses: <b style="color:var(--ink);font-size:1.3rem">${accessCode(v)}</b> <a class="mini" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(`Pembayaran ${v} dikonfirmasi.\nKode akses Polaroid Studio: ${accessCode(v)}`)}">Kirim lewat WA</a>`:"Format invoice polaroid tidak valid."}};
+}
+
+/* ===== Polaroid Studio (wajib bayar) ===== */
+const cv=$("#cv"),cx=cv.getContext("2d");let img=null,sz=SIZES[2],tp=TPLS[0],unlocked=null;
+$("#sizes").innerHTML=SIZES.map(s=>`<button class="chip" data-k="${s.k}">${s.n}</button>`).join("");
+$("#tpls").innerHTML=TPLS.map(t=>`<button class="chip" data-t="${t.id}">${t.n}</button>`).join("");
+function chips(){
+  $$("#sizes .chip").forEach(c=>{c.classList.toggle("on",c.dataset.k===sz.k);c.disabled=!!unlocked&&c.dataset.k!==unlocked});
+  $$("#tpls .chip").forEach(c=>c.classList.toggle("on",c.dataset.t===tp.id));
+  {const d=PRODUCTS.find(p=>p.id==="p1").disc;$("#priceLine").innerHTML=`Akses ${sz.n}: ${d?`<s style="opacity:.6">${rp(sz.price)}</s> `:""}${rp(dp(sz.price,d))}`}
+  $("#editor").style.display=unlocked?"block":"none";$("#buyBox").style.display=unlocked?"none":"block";
+}
+$("#sizes").onclick=e=>{const c=e.target.closest(".chip");if(!c||c.disabled)return;sz=SIZES.find(s=>s.k===c.dataset.k);chips();draw();gsap.fromTo(cv,{scale:.94},{scale:1,duration:.5,ease:"back.out(1.6)"})};
+$("#tpls").onclick=e=>{const c=e.target.closest(".chip");if(!c)return;tp=TPLS.find(t=>t.id===c.dataset.t);chips();draw();gsap.fromTo(cv,{rotate:-3,scale:.96},{rotate:0,scale:1,duration:.5,ease:"back.out(1.6)"})};
+function draw(){
+  const K=8,[W,H]=[sz.mm[0]*K,sz.mm[1]*K],[x,y,w,h]=sz.ph.map(v=>v*K);cv.width=W;cv.height=H;
+  cx.fillStyle=tp.bg;cx.fillRect(0,0,W,H);
+  const g=cx.createLinearGradient(x,y,x+w,y+h);g.addColorStop(0,"#9fb8b0");g.addColorStop(1,"#d7c58f");cx.fillStyle=g;cx.fillRect(x,y,w,h);
+  if(img&&unlocked){cx.save();cx.beginPath();cx.rect(x,y,w,h);cx.clip();cx.filter=$("#pfil").value;
+    const s=Math.max(w/img.width,h/img.height),iw=img.width*s,ih=img.height*s;cx.drawImage(img,x+(w-iw)/2,y+(h-ih)/2,iw,ih);cx.restore();cx.filter="none"}
+  const zone=H-(y+h),fs=Math.min(zone*.5,W*.12);
+  cx.textAlign="center";cx.fillStyle=tp.ink;cx.font=tp.f.replace("{s}",fs|0);
+  cx.fillText(unlocked?$("#pc").value:"Momen manis",W/2,y+h+zone/2+fs*.3,W-40);
+  if(tp.deco==="dots"){cx.fillStyle=tp.ink+"55";for(let i=0;i<5;i++){cx.beginPath();cx.arc(W*(.2+i*.15),H-zone*.14,3,0,7);cx.fill()}}
+  if(tp.deco==="line"){cx.strokeStyle=tp.ink;cx.lineWidth=2;cx.strokeRect(x-8,y-8,w+16,h+16)}
+  if(!unlocked){cx.save();cx.translate(W/2,y+h/2);cx.rotate(-.5);cx.fillStyle="#ffffffb8";cx.font=`700 ${W*.075|0}px Manrope`;cx.fillText("CONTOH – BAYAR DULU",0,0);cx.restore()}
+}
+function verify(inv,code){const m=/^GP-\d{6}-[A-Z0-9]{4}-([SMLW])$/.exec(inv);return m&&code===accessCode(inv)?m[1]:null}
+function doUnlock(k,inv){unlocked=k;sz=SIZES.find(s=>s.k===k);chips();draw();toast("Akses terbuka: "+sz.n)}
+$("#unlock").onclick=()=>{const inv=$("#uinv").value.trim().toUpperCase(),code=$("#ucode").value.trim().toUpperCase(),k=verify(inv,code);
+  if(!k){toast("Kode invoice atau kode akses salah");gsap.fromTo("#buyBox",{x:-10},{x:0,duration:.5,ease:"elastic.out(1,.3)"});return}
+  store.set("gs_unlock",{inv,code});doUnlock(k)};
+$("#pbuy").onclick=()=>checkout({pid:"p1",product:"Polaroid Studio – "+sz.n+" – "+tp.n,type:"polaroid",price:dp(sz.price,PRODUCTS.find(p=>p.id==="p1").disc),pre:"GP",suf:"-"+sz.k});
+$("#pf").onchange=e=>{const f=e.target.files[0];if(!f)return;const i=new Image();i.onload=()=>{img=i;draw();gsap.fromTo(cv,{rotate:-5,scale:.92},{rotate:0,scale:1,duration:.6,ease:"back.out(1.7)"})};i.src=URL.createObjectURL(f)};
+["pc","pfil"].forEach(i=>$("#"+i).addEventListener("input",draw));
+$("#psave").onclick=()=>{if(!img){toast("Pilih foto dulu");return}const a=document.createElement("a");a.download=`polaroid-${sz.n.split(" ")[0].toLowerCase()}.png`;a.href=cv.toDataURL("image/png");a.click()};
+$("#pprint").onclick=()=>{if(!img){toast("Pilih foto dulu");return}const w=open("","_blank");
+  w.document.write(`<title>Cetak Polaroid</title><style>@page{margin:0}body{margin:0}img{display:block;width:${sz.mm[0]}mm;height:${sz.mm[1]}mm;margin:8mm}</style><img src="${cv.toDataURL("image/png")}">`);
+  w.document.close();setTimeout(()=>w.print(),500)};
+const sv=store.get("gs_unlock",null);if(sv){const k=verify(sv.inv,sv.code);if(k)unlocked=k,sz=SIZES.find(s=>s.k===k)}
+chips();draw();document.fonts.ready.then(draw);
+
+/* ===== Metode pembayaran ===== */
+const icoHTML=m=>/^(https?:|data:|\.{0,2}\/|[\w-]+\/)/.test(m.icon)?`<img src="${m.icon}" alt="" width="36" height="36" style="object-fit:contain;border-radius:8px;flex:none">`:`<span style="font-size:1.8rem;line-height:1;flex:none">${m.icon}</span>`;
+const renderPays=()=>{$("#pays").innerHTML=PAYMENTS.map(m=>`<div class="pm">${icoHTML(m)}<b>${m.n}</b></div>`).join("")};renderPays();
+const setPay=(id,k,v)=>{(pay[id]=pay[id]||{})[k]=v;Object.assign(PAYMENTS.find(m=>m.id===id),pay[id]);if(!store.set("gs_pay",pay))toast("Penyimpanan penuh, pakai gambar lebih kecil");else toast("Metode pembayaran diperbarui");renderPays()};
+const payAdmin=()=>`<h3 style="font-size:1.6rem;margin-top:24px">Metode pembayaran</h3><p>Ganti ikon, keterangan nomor/rekening, dan gambar QR.</p>`+PAYMENTS.map(m=>`<div class="prow"><b style="display:flex;align-items:center;gap:8px">${icoHTML(m)} ${m.n}</b><button class="mini" data-prst="${m.id}">Reset</button><div class="ed"><input data-pt="${m.id}" value="${esc(m.info)}" style="flex:1;min-width:180px"><label class="mini">Ikon<input type="file" accept="image/*" data-pi="${m.id}" hidden></label><label class="mini">QR<input type="file" accept="image/*" data-pq="${m.id}" hidden></label></div></div>`).join("");
+
+/* ===== Notifikasi pembelian (dari pesanan nyata yang sudah Lunas) ===== */
+let ki=0;
+const ago=d=>{const m=Math.max(1,Math.round((Date.now()-new Date(d))/6e4));return m<60?m+" menit lalu":m<1440?Math.round(m/60)+" jam lalu":Math.round(m/1440)+" hari lalu"};
+const mask=n=>{const p=n.trim().split(/\s+/);return p[0]+(p[1]?" "+p[1][0].toUpperCase()+".":"")};
+function tick(){
+  const l=orders.filter(o=>["Lunas","Selesai"].includes(o.status)).slice(0,12),tk=$("#tk");
+  if(!l.length){tk.style.display="none";setTimeout(tick,4000);return}
+  const o=l[ki++%l.length];
+  tk.innerHTML=`<i>✓</i><span><b>${esc(mask(o.buyer))}</b> membeli ${esc(o.product.split(" – ")[0])} · ${ago(o.date)}</span>`;
+  tk.style.display="flex";tk.style.opacity=1;const w=tk.offsetWidth,W=innerWidth;
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches){gsap.fromTo(tk,{x:14,opacity:0},{x:14,opacity:1,duration:.4,onComplete:()=>setTimeout(()=>{tk.style.opacity=0;setTimeout(tick,3000)},4000)});return}
+  gsap.fromTo(tk,{x:W},{x:-w,duration:(W+w)/95,ease:"none",onComplete:()=>setTimeout(tick,2500)});
+}
+setTimeout(tick,2500);
+
+/* ===== Musik santai ===== */
+const TR=[
+ {n:"Santai Pagi",bpm:72,ch:[[60,64,67,71],[57,60,64,67],[53,57,60,64],[55,59,62,65]]},
+ {n:"Senja Tenang",bpm:64,ch:[[62,66,69,73],[59,62,66,69],[55,59,62,66],[57,61,64,67]]},
+ {n:"Malam Lo-fi",bpm:78,ch:[[57,60,64,67],[62,65,69,72],[55,59,62,65],[60,64,67,71]]}];
+MUSIC_FILES.forEach(f=>TR.push(f));
+let ac,mg,mi=0,playing=false,muted=store.get("gs_mute",false),nxt=0,stp=0,tmr=null;const au=new Audio();au.loop=true;
+const mf=m=>440*2**((m-69)/12);
+function tone(t,m,d,ty,v,a){const o=ac.createOscillator(),g=ac.createGain();o.type=ty;o.frequency.value=mf(m);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+a);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(mg);o.start(t);o.stop(t+d+.05)}
+function sched(){const T=TR[mi],s=60/T.bpm/2;
+  while(nxt<ac.currentTime+.4){const bar=(stp>>3)%T.ch.length,c=T.ch[bar],k=stp%8;
+    if(k===0){c.forEach(m=>tone(nxt,m,s*8,"sine",.045,.6));tone(nxt,c[0]-24,s*4,"sine",.12,.02)}
+    if([0,2,3,5,6].includes(k)||(k===7&&Math.random()>.5))tone(nxt,c[(k*3+bar)%c.length]+12,s*3,"triangle",.06,.01);
+    nxt+=s;stp++}}
+function play(){
+  const T=TR[mi];clearInterval(tmr);
+  if(T.src){ac&&ac.suspend();au.src=T.src;au.volume=muted?0:.6;au.play().catch(()=>{})}
+  else{au.pause();
+    if(!ac){ac=new(window.AudioContext||window.webkitAudioContext)();mg=ac.createGain();const f=ac.createBiquadFilter();f.type="lowpass";f.frequency.value=1800;mg.connect(f);f.connect(ac.destination)}
+    ac.resume();mg.gain.value=muted?0:.8;nxt=ac.currentTime+.1;stp=0;tmr=setInterval(sched,120)}
+  playing=true;mui()}
+function pauseM(){clearInterval(tmr);au.pause();ac&&ac.suspend();playing=false;mui()}
+function mui(){$("#mpp").textContent=playing?"⏸":"▶";$("#mpm").textContent=muted?"🔇":"🔊";$("#mpn").textContent=TR[mi].n}
+const sw=d=>{mi=(mi+d+TR.length)%TR.length;play()};
+$("#mpp").onclick=()=>playing?pauseM():play();
+$("#mpv").onclick=()=>sw(-1);$("#mpx").onclick=()=>sw(1);
+$("#mpm").onclick=()=>{muted=!muted;store.set("gs_mute",muted);if(mg)mg.gain.value=muted?0:.8;au.volume=muted?0:.6;mui()};
+$("#mpf").onchange=e=>{const f=e.target.files[0];if(!f)return;TR.push({n:f.name.replace(/\.\w+$/,""),src:URL.createObjectURL(f)});mi=TR.length-1;play()};
+document.addEventListener("visibilitychange",()=>{if(!playing)return;if(document.hidden){ac&&ac.suspend();au.pause()}else if(TR[mi].src)au.play().catch(()=>{});else ac.resume()});
+addEventListener("pointerdown",()=>{if(!muted&&!playing)play()},{once:true});
+mui();
+/* ===== Popup promo (muncul saat pertama kali buka) ===== */
+const POPDEF={on:true,tag:"Promo",title:"Diskon sampai 20%",text:"Potongan harga otomatis berlaku pada produk bertanda diskon. Bayar lunas lewat QRIS, DANA, OVO, atau SeaBank.",code:"",btn:"Lihat produk",act:"produk"};
+let pop=Object.assign({},POPDEF,store.get("gs_popup",{}));
+const ovPop=$("#ovPop"),boxPop=$("#boxPop");
+const seen=()=>{try{return sessionStorage.getItem("gs_pop")}catch(e){return 0}};
+function closePop(){if(ovPop.style.display!=="grid")return;try{sessionStorage.setItem("gs_pop","1")}catch(e){}closeOv(ovPop,boxPop)}
+ovPop.addEventListener("click",e=>{if(e.target===ovPop||e.target.closest(".x"))closePop()});
+addEventListener("keydown",e=>{if(e.key==="Escape")closePop()});
+function showPop(){
+  boxPop.innerHTML=`${xbtn}<span class="tg">${esc(pop.tag)}</span><h3>${esc(pop.title)}</h3><p>${esc(pop.text)}</p>
+   ${pop.code?`<button class="pcode" id="pcode">${esc(pop.code)} <small>· salin</small></button>`:""}
+   <button class="btn" id="pgo" style="width:100%;margin-top:14px">${esc(pop.btn)}</button>`;
+  openOv(ovPop,boxPop);
+  $("#pcode")?.addEventListener("click",()=>{try{navigator.clipboard.writeText(pop.code)}catch(e){}toast("Kode disalin")});
+  $("#pgo").onclick=()=>{closePop();setTimeout(()=>{if(pop.act==="wa")open(waLink("Halo admin GOSUPPLY, saya mau pakai promo"+(pop.code?" "+pop.code:"")+"."),"_blank");else lenis.scrollTo(pop.act==="studio"?"#polaroid":"#produk")},350)};
+}
+const popAdmin=()=>`<h3 style="font-size:1.6rem;margin-top:24px">Popup promo / diskon</h3><p>Muncul sekali setiap pengunjung baru membuka website. Ubah isinya untuk promo, diskon, atau info.</p>
+ <div class="prow"><label class="mini"><input type="checkbox" data-po="on" ${pop.on?"checked":""} style="width:auto;display:inline;margin-right:4px">Aktif</label><button class="mini" data-pshow="1">Tes tampilkan</button>
+ <div class="ed" style="display:grid;gap:8px"><input data-po="tag" value="${esc(pop.tag)}" placeholder="Label (Promo, Diskon, Info)"><input data-po="title" value="${esc(pop.title)}" placeholder="Judul">
+ <textarea data-po="text" rows="3" placeholder="Isi pesan">${esc(pop.text)}</textarea><input data-po="code" value="${esc(pop.code)}" placeholder="Kode promo (opsional, hanya ditampilkan)"><input data-po="btn" value="${esc(pop.btn)}" placeholder="Teks tombol">
+ <select data-po="act"><option value="produk" ${pop.act==="produk"?"selected":""}>Tombol: lihat produk</option><option value="studio" ${pop.act==="studio"?"selected":""}>Tombol: buka Polaroid Studio</option><option value="wa" ${pop.act==="wa"?"selected":""}>Tombol: chat admin WA</option></select></div></div>`;
+if(pop.on&&!seen())setTimeout(showPop,1400);
+</script>
+
+<script src="gosupply-patch.js"></script>
+
+</body>
+</html>
