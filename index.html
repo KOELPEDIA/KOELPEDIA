@@ -125,6 +125,39 @@ footer button{background:none;border:0;color:#ffffff80;text-decoration:underline
 .tg{display:inline-block;background:var(--ink);color:var(--gold);font-size:.72rem;font-weight:800;letter-spacing:.06em;padding:.3em .9em;border-radius:99px}
 .pcode{display:block;width:100%;margin-top:12px;border:1.5px dashed var(--gold);background:transparent;border-radius:12px;padding:.6em;font-weight:800;letter-spacing:.06em}
 .pcode small{font-weight:500;opacity:.6}
+/* ===== Ringkas: banner 16:9 + kartu produk minimalis ===== */
+nav{background:rgba(12,12,13,.92);backdrop-filter:blur(12px)}
+
+/* Banner landscape 16:9, ukuran isi ikut lebar banner */
+.banner{height:auto;aspect-ratio:16/9;width:min(1180px,100% - 24px);
+  margin:calc(64px + env(safe-area-inset-top)) auto 0;border-radius:18px;container-type:inline-size}
+.sl .wrap,.ctl .wrap{width:100%;padding-inline:5cqw}
+.sl .in{max-width:64%;padding:0 0 9cqw}
+.tag{font-size:clamp(.6rem,1.5cqw,.8rem);margin-bottom:1.6cqw;padding:.2em .8em}
+.sl h1{font-size:clamp(1.25rem,6cqw,3.6rem);margin-bottom:1.6cqw}
+.sl p{font-size:clamp(.7rem,1.7cqw,1rem);max-width:42ch;margin-bottom:2.4cqw}
+.sl .btn{font-size:clamp(.7rem,1.5cqw,.9rem);padding:.55em 1.2em}
+.art{width:28cqw;right:5cqw;font-size:11cqw}
+.ctl{bottom:1.8cqw}
+.ar{width:clamp(26px,4cqw,38px);height:clamp(26px,4cqw,38px);font-size:.9rem}
+.dot{height:3px}
+@container (max-width:560px){
+  .sl p{display:none}
+  .sl .in{max-width:68%}
+  .sl h1{font-size:clamp(1.15rem,7cqw,2rem)}
+}
+
+/* Kartu produk lebih kecil: 2 kolom di HP */
+.grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr));gap:12px}
+.card{border-radius:14px}
+.card:hover{transform:translateY(-3px)}
+.thumb{aspect-ratio:4/3;font-size:2.2rem}
+.card .in{padding:10px 12px 12px;gap:6px}
+.card h3{font-size:1.02rem}
+.badge{font-size:.66rem;padding:.2em .65em}
+.price{font-size:.85rem}
+.off{font-size:.68rem;top:8px;right:8px}
+@media(min-width:900px){.grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}}
 </style>
 </head>
 <body>
