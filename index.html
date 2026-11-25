@@ -520,7 +520,6 @@ function draw(){
   cx.fillText(unlocked?$("#pc").value:"Momen manis",W/2,y+h+zone/2+fs*.3,W-40);
   if(tp.deco==="dots"){cx.fillStyle=tp.ink+"55";for(let i=0;i<5;i++){cx.beginPath();cx.arc(W*(.2+i*.15),H-zone*.14,3,0,7);cx.fill()}}
   if(tp.deco==="line"){cx.strokeStyle=tp.ink;cx.lineWidth=2;cx.strokeRect(x-8,y-8,w+16,h+16)}
-  if(!unlocked){cx.save();cx.translate(W/2,y+h/2);cx.rotate(-.5);cx.fillStyle="#ffffffb8";cx.font=`700 ${W*.075|0}px Manrope`;cx.fillText("CONTOH – BAYAR DULU",0,0);cx.restore()}
 }
 function verify(inv,code){const m=/^GP-\d{6}-[A-Z0-9]{4}-([SMLW])$/.exec(inv);return m&&code===accessCode(inv)?m[1]:null}
 function doUnlock(k,inv){unlocked=k;sz=SIZES.find(s=>s.k===k);chips();draw();toast("Akses terbuka: "+sz.n)}
